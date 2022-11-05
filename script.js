@@ -1,9 +1,12 @@
-let form = document.forms.forma;
+let form = document.forms.form;
 let titleInput = form.elements.title;
 let authorInput = form.elements.author;
 let pagesInput = form.elements.pages;
 let statusInput = form.elements.status;
-let button = form.elements.input;
+
+const container = document.querySelector("main");
+let card = document.querySelector("book-card");
+
 
 let myLibrary = [{ 
     title: "Nineteen Eighty-Four",
@@ -29,6 +32,8 @@ function addBookToLibrary() {
     let status = statusInput.value;
     let newBook = new Book(title, author, pages, status);
     myLibrary.push(newBook);
+    // container.append(card);
+    console.log("tyhujiko");
 }
 
 form.addEventListener('submit', addBookToLibrary());

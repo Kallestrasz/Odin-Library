@@ -10,19 +10,70 @@
 	<body>
 		<header><div>The Great Library of Odin</div></header>
 		<add-panel>
-			<form name="forma">
-				<label for="title"> Title </label>
-				<input type="text" name="title" id="title" />
-				<label for="author"> Author </label>
-				<input type="text" name="author" id="author" />
-				<label for="pages"> Pages </label>
-				<input type="text" name="pages" id="pages" />
-				<label for="status"> Status </label>
-				<input type="text" name="status" id="status" />
+			<div class="form-title">Add New Book</div>
+			<form name="form">
+				<div class="label-wrapper">
+					<label for="title"> Title </label>
+					<input type="text" name="title" id="title" />
+				</div>
+				<div class="label-wrapper">
+					<label for="author"> Author </label>
+					<input type="text" name="author" id="author" />
+				</div>
+				<div class="label-wrapper">
+					<label for="pages"> Pages </label>
+					<input type="text" name="pages" id="pages" />
+				</div>
+				<div class="status-container">
+					<label for="status"> Status </label>
+					<input type="checkbox" name="status" id="status" />
+				</div>
 				<button name="input">Add new book</button>
 			</form>
 		</add-panel>
-		<main></main>
+		<main>
+			<div class="flex-container">
+				<div class="book-card">
+					<div>Nineteen Eighty-Four</div>
+					<div>George Orwell</div>
+					<div>328 pages</div>
+					<div class="button-container">
+						<button class="card-button" id="status-button">Status</button>
+						<button class="card-button" id="remove-button">Remove</button>
+					</div>
+				</div>
+				<div class="book-card">
+					<div>Name</div>
+					<div>Author</div>
+					<div>Pages</div>
+					<div>Bruh</div>
+					<div class="button-container">
+						<button class="card-button" id="status-button">Status</button>
+						<button class="card-button" id="remove-button">Remove</button>
+					</div>
+				</div>
+				<div class="book-card">
+					<div>Name</div>
+					<div>Author</div>
+					<div>Pages</div>
+					<div>Bruh</div>
+					<div class="button-container">
+						<button class="card-button" id="status-button">Status</button>
+						<button class="card-button" id="remove-button">Remove</button>
+					</div>
+				</div>
+				<div class="book-card">
+					<div>Name</div>
+					<div>Author</div>
+					<div>Pages</div>
+					<div>Bruh</div>
+					<div class="button-container">
+						<button class="card-button" id="status-button">Status</button>
+						<button class="card-button" id="remove-button">Remove</button>
+					</div>
+				</div>
+			</div>
+		</main>
 	</body>
 	<script src="script.js" defer></script>
 </html>
