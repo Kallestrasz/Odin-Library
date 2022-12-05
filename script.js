@@ -46,6 +46,8 @@ function addBookToLibrary() {
     const titleDiv = document.createElement("div");
     const authDiv = document.createElement("div");
     const pageDiv = document.createElement("div");
+    const removeBtn = document.createElement("button");
+    const statusBtn = document.createElement("button");
 
     titleDiv.innerText = item.title;
     authDiv.innerText = item.author;
@@ -60,6 +62,41 @@ function addBookToLibrary() {
     bookDiv.appendChild(pageDiv);
     bookDiv.appendChild(buttonContainer);
 
+    removeBtn.classList.add("remove-button", "card-button");
+    statusBtn.classList.add("status-button","card-button");
+
+    removeBtn.innerText = "Delete";
+    statusBtn.innerText = "Status";
+
+    removeBtn.addEventListener("click", (event) => {
+        const bookCards = Array.from(document.querySelectorAll(".book-card"));
+        const i = bookCards.indexOf(event.target.parentNode.parentNode);
+        myLibrary.splice(i,1);
+        display();
+    });
+
+    statusBtn.addEventListener("click", () => {
+        if(item.status == 'on'){
+                item.status = 'off';
+                display();
+        }
+         else{
+             item.status = 'on';
+             display();
+        }
+    });
+
+    if(item.status == 'on'){
+        statusBtn.style.backgroundColor = "green";
+        statusBtn.innerText = "Read"
+    }
+    else{
+        statusBtn.style.backgroundColor = "red";
+        statusBtn.innerText = "Not read"
+    }
+
+    buttonContainer.appendChild(removeBtn);
+    buttonContainer.appendChild(statusBtn);
 }
 
 form.addEventListener("submit", (event) =>{
