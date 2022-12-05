@@ -34,7 +34,7 @@ function addBookToLibrary() {
     const title = titleInput.value;
     const author = authorInput.value;
     const pages = pagesInput.value;
-    const status = statusInput.value;
+    const status = statusInput.checked;
     const newBook = new Book(title, author, pages, status);
     myLibrary.push(newBook);
 }
@@ -48,7 +48,7 @@ function addBookToLibrary() {
     const pageDiv = document.createElement("div");
     const removeBtn = document.createElement("button");
     const statusBtn = document.createElement("button");
-
+    
     titleDiv.innerText = item.title;
     authDiv.innerText = item.author;
     pageDiv.innerText = item.pages + " pages";
@@ -76,17 +76,17 @@ function addBookToLibrary() {
     });
 
     statusBtn.addEventListener("click", () => {
-        if(item.status == 'on'){
-                item.status = 'off';
+        if(item.status == true){
+                item.status = false;
                 display();
         }
          else{
-             item.status = 'on';
+             item.status = true;
              display();
         }
     });
 
-    if(item.status == 'on'){
+    if(item.status == true){
         statusBtn.style.backgroundColor = "green";
         statusBtn.innerText = "Read"
     }
