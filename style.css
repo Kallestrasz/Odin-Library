@@ -36,15 +36,15 @@ form{
     flex-direction: column;
 }
 
-.status-container{
-    display: flex;
-    justify-content: space-between;
-}
-
 .label-wrapper{
     display: flex;
     flex-direction: column;
     font-size: 14px;
+}
+
+#status-label{
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 main{
@@ -52,7 +52,7 @@ main{
     border-radius: 15px;
     display: flex;
     justify-content: center;
-    box-shadow: inset black 0px 0px 3px;
+    box-shadow: inset black 0px 0px 1px;
 }
 
 .flex-container{
@@ -76,6 +76,7 @@ main{
     justify-content: space-around;
     align-items: center;
     text-align: center;
+    font-size: 16px;
 }
 
 .card-button{

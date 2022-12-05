@@ -4,10 +4,6 @@ let authorInput = form.elements.author;
 let pagesInput = form.elements.pages;
 let statusInput = form.elements.status;
 
-const container = document.querySelector("main");
-let card = document.querySelector("book-card");
-
-
 let myLibrary = [{ 
     title: "Nineteen Eighty-Four",
     author: "George Orwell",
@@ -25,17 +21,52 @@ class Book {
     }
 }
 
-function addBookToLibrary() {
-    let title = titleInput.value;
-    let author = authorInput.value;
-    let pages = pagesInput.value;
-    let status = statusInput.value;
-    let newBook = new Book(title, author, pages, status);
-    myLibrary.push(newBook);
-    // container.append(card);
-    console.log("tyhujiko");
+function display() {
+    const container = document.querySelector(".flex-container");
+    const books = document.querySelectorAll(".book-card");
+    books.forEach(book => container.removeChild(book));
+    for (let i=0; i<myLibrary.length; i++){
+        createBook(myLibrary[i]);
+    }
 }
 
-form.addEventListener('submit', addBookToLibrary());
+function addBookToLibrary() {
+    const title = titleInput.value;
+    const author = authorInput.value;
+    const pages = pagesInput.value;
+    const status = statusInput.value;
+    const newBook = new Book(title, author, pages, status);
+    myLibrary.push(newBook);
+}
 
+ function createBook(item) {
+    const container = document.querySelector(".flex-container");
+    const buttonContainer = document.createElement("div");
+    const bookDiv = document.createElement("div");
+    const titleDiv = document.createElement("div");
+    const authDiv = document.createElement("div");
+    const pageDiv = document.createElement("div");
 
+    titleDiv.innerText = item.title;
+    authDiv.innerText = item.author;
+    pageDiv.innerText = item.pages + " pages";
+
+    bookDiv.classList.add("book-card")
+    buttonContainer.classList.add("button-container")
+    
+    container.appendChild(bookDiv);
+    bookDiv.appendChild(titleDiv);
+    bookDiv.appendChild(authDiv);
+    bookDiv.appendChild(pageDiv);
+    bookDiv.appendChild(buttonContainer);
+
+}
+
+form.addEventListener("submit", (event) =>{
+    event.preventDefault();
+    addBookToLibrary();
+    form.reset()
+    display();
+})
+
+display();
