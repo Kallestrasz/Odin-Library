@@ -12,11 +12,12 @@ let myLibrary = [{
 }];
 
 class Book {
-    constructor(title, author, pages, status) {
+    constructor(title, author, pages, status, edit) {
         this.title = title;
         this.author = author;
         this.pages = pages;
         this.status = status;
+        this.edit = edit;
         this.template;
     }
 }
@@ -25,7 +26,7 @@ function display() {
     const container = document.querySelector(".flex-container");
     const books = document.querySelectorAll(".book-card");
     books.forEach(book => container.removeChild(book));
-    for (let i=0; i<myLibrary.length; i++){
+    for (let i = 0; i < myLibrary.length; i++){
         createBook(myLibrary[i]);
     }
 }
@@ -39,8 +40,7 @@ function addBookToLibrary() {
     myLibrary.push(newBook);
 }
 
-let editStatus = false;
-let editIndex;
+let editIndex = 0;
 
 function createBook(item) {
     const container = document.querySelector(".flex-container");
@@ -95,7 +95,7 @@ function createBook(item) {
     editBtn.addEventListener("click", (event) => {
         const bookCards = Array.from(document.querySelectorAll(".book-card")); 
         editIndex = bookCards.indexOf(event.target.parentNode.parentNode);
-        editStatus = true;
+        myLibrary[editIndex].edit = true;
         display();
     });
 
@@ -108,7 +108,7 @@ function createBook(item) {
         statusBtn.innerText = "Not read"
     }
 
-    if(editStatus){
+    if(item.edit){
         editBtn.style.backgroundColor = "blue";
     }
     else{
@@ -121,13 +121,13 @@ function createBook(item) {
 }
 
 form.addEventListener("submit", (event) =>{
-    if(editStatus){
+    if(myLibrary[editIndex].edit == false){
         myLibrary[editIndex].title = titleInput.value;
         myLibrary[editIndex].author = authorInput.value;
         myLibrary[editIndex].pages = pagesInput.value;
         myLibrary[editIndex].status = statusInput.checked;
-        editStatus = false;
-        editIndex = null;
+        myLibrary[editIndex].editStatus = false;
+        editIndex = false;
     }
     else{
         addBookToLibrary();
