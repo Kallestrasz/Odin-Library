@@ -39,7 +39,10 @@ function addBookToLibrary() {
     myLibrary.push(newBook);
 }
 
- function createBook(item) {
+let editStatus = false;
+let editIndex;
+
+function createBook(item) {
     const container = document.querySelector(".flex-container");
     const buttonContainer = document.createElement("div");
     const bookDiv = document.createElement("div");
@@ -48,7 +51,8 @@ function addBookToLibrary() {
     const pageDiv = document.createElement("div");
     const removeBtn = document.createElement("button");
     const statusBtn = document.createElement("button");
-    
+    const editBtn = document.createElement("button");
+
     titleDiv.innerText = item.title;
     authDiv.innerText = item.author;
     pageDiv.innerText = item.pages + " pages";
@@ -64,9 +68,11 @@ function addBookToLibrary() {
 
     removeBtn.classList.add("remove-button", "card-button");
     statusBtn.classList.add("status-button","card-button");
+    editBtn.classList.add("edit-button","card-button");
 
     removeBtn.innerText = "Delete";
     statusBtn.innerText = "Status";
+    editBtn.innerText = "Edit";
 
     removeBtn.addEventListener("click", (event) => {
         const bookCards = Array.from(document.querySelectorAll(".book-card"));
@@ -86,6 +92,13 @@ function addBookToLibrary() {
         }
     });
 
+    editBtn.addEventListener("click", (event) => {
+        const bookCards = Array.from(document.querySelectorAll(".book-card")); 
+        editIndex = bookCards.indexOf(event.target.parentNode.parentNode);
+        editStatus = true;
+        display();
+    });
+
     if(item.status == true){
         statusBtn.style.backgroundColor = "green";
         statusBtn.innerText = "Read"
@@ -95,13 +108,31 @@ function addBookToLibrary() {
         statusBtn.innerText = "Not read"
     }
 
+    if(editStatus){
+        editBtn.style.backgroundColor = "blue";
+    }
+    else{
+        editBtn.style.backgroundColor = "grey";
+    }
+
+    buttonContainer.appendChild(editBtn); 
     buttonContainer.appendChild(removeBtn);
     buttonContainer.appendChild(statusBtn);
 }
 
 form.addEventListener("submit", (event) =>{
+    if(editStatus){
+        myLibrary[editIndex].title = titleInput.value;
+        myLibrary[editIndex].author = authorInput.value;
+        myLibrary[editIndex].pages = pagesInput.value;
+        myLibrary[editIndex].status = statusInput.checked;
+        editStatus = false;
+        editIndex = null;
+    }
+    else{
+        addBookToLibrary();
+    }
     event.preventDefault();
-    addBookToLibrary();
     form.reset()
     display();
 })

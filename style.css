@@ -94,16 +94,6 @@ button{
     border-radius: 5px;
 }
 
-button:hover {
-    cursor: pointer;
-    background-color: #6173b3;
-}
-
-button:active {
-    background-color: #4b5783;
-}
-
-
 input[type=text]{
     background-color: #424549;
     border: none;
