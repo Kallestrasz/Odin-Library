@@ -36,7 +36,8 @@ function addBookToLibrary() {
     const author = authorInput.value;
     const pages = pagesInput.value;
     const status = statusInput.checked;
-    const newBook = new Book(title, author, pages, status);
+    const edit = false;
+    const newBook = new Book(title, author, pages, status,edit);
     myLibrary.push(newBook);
 }
 
@@ -93,9 +94,15 @@ function createBook(item) {
     });
 
     editBtn.addEventListener("click", (event) => {
+        if(myLibrary[editIndex].edit == true){
+            myLibrary[editIndex].edit = false;
+            editIndex = 0;
+        }
+        else{
         const bookCards = Array.from(document.querySelectorAll(".book-card")); 
         editIndex = bookCards.indexOf(event.target.parentNode.parentNode);
         myLibrary[editIndex].edit = true;
+        }
         display();
     });
 
@@ -121,13 +128,13 @@ function createBook(item) {
 }
 
 form.addEventListener("submit", (event) =>{
-    if(myLibrary[editIndex].edit == false){
+    if(myLibrary[editIndex].edit == true){
         myLibrary[editIndex].title = titleInput.value;
         myLibrary[editIndex].author = authorInput.value;
         myLibrary[editIndex].pages = pagesInput.value;
         myLibrary[editIndex].status = statusInput.checked;
-        myLibrary[editIndex].editStatus = false;
-        editIndex = false;
+        myLibrary[editIndex].edit = false;
+        editIndex = 0;
     }
     else{
         addBookToLibrary();

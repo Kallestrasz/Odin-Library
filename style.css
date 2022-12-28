@@ -67,8 +67,8 @@ main{
 .book-card{
     background-color: #424549;
     box-shadow: black 0px 0px 1px;
-    height: 12rem;
-    width: 9rem;   
+    height: 16rem;
+    width: 13rem;   
     padding: 1rem;
     border-radius: 10px;
     display: flex;
@@ -84,8 +84,8 @@ main{
     background-color:#7289da;
     border: none;
     border-radius: 5px;
-    width: 150px;
-    height: 25px;
+    width: 200px;
+    height: 30px;
 }
 
 button{
